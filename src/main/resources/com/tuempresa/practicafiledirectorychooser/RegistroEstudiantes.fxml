@@ -36,6 +36,6 @@
             <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Seleccionar" />
          </children>
       </HBox>
-      <HBox layoutX="32.0" layoutY="303.0" prefHeight="100.0" prefWidth="200.0" />
+      <Separator layoutX="14.0" layoutY="59.0" prefHeight="8.0" prefWidth="584.0" />
    </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ import javafx.stage.FileChooser;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.Optional;
 
 public class RegistroProyectosController {
     @FXML
@@ -20,7 +21,7 @@ public class RegistroProyectosController {
     @FXML
     private TextField txtDirectorioProyecto;
     @FXML
-    private Button btnSeleccionarArchivo;
+    private Button btnDirectorio;
     @FXML
     private Button btnRequerimiento;
 
@@ -46,16 +47,44 @@ public class RegistroProyectosController {
                 DirectoryChooser dc = new DirectoryChooser();
                 dc.setTitle("Seleccionar Directorio");
                 dc.setInitialDirectory(new File(System.getProperty("C:\\")));
-                File f = dc.showDialog(btnSeleccionarArchivo.getScene().getWindow());
+                File f = dc.showDialog(btnDirectorio.getScene().getWindow());
 
                 if (f != null) {
                     txtDirectorioProyecto.setText(f.getAbsolutePath());
                 }
     }
+
+    @FXML
+    private void seleccionarProyecto() {
+        DirectoryChooser dc = new DirectoryChooser();
+        dc.setTitle("Seleccionar Directorio");
+        File inicio = new File(System.getProperty("user.home"));
+        if (inicio.isDirectory()) {
+            dc.setInitialDirectory(inicio);
+        }
+        File f = dc.showDialog(btnDirectorio.getScene().getWindow());
+        if (f != null) {
+            txtDirectorioProyecto.setText(f.getAbsolutePath());
+        }
+    }
+
     @FXML
     private void guardarProyecto() {
-        if (!validarFormulario()){
+        if (validarFormulario()) {
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setTitle("Confirmación");
+            confirmacion.setHeaderText("¿Seguro que quiere guardar el proyecto?");
+            confirmacion.setContentText("Proyecto: " +  txtProyecto.getText());
 
+            Optional<ButtonType> respuesta = confirmacion.showAndWait();
+            if(respuesta.isPresent() && respuesta.get() == ButtonType.OK){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Proyecto guardado");
+                alert.setHeaderText("Proyecto guardado");
+                alert.setContentText("Proyecto guardado");
+                alert.showAndWait();
+                limpiarProyecto();
+            }
         }
     }
 
@@ -84,25 +113,4 @@ public class RegistroProyectosController {
         txtDirectorioProyecto("");
 
     }
-
-    @FXML
-    private void guardarDatos() {
-        if (!validarFormulario()) {
-            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmacion.setTitle("Confirmación");
-            confirmacion.setHeaderText("¿Seguro que quiere guardar el proyecto?");
-            confirmacion.setContentText("Proyecto: " +  txtProyecto.getText());
-
-            Optional<ButtonType> respuesta = confirmacion.showAndWait();
-            if(respuesta.isPresent() && respuesta.get() == ButtonType.OK){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Proyecto guardado");
-                alert.setHeaderText("Proyecto guardado");
-                alert.setContentText("Proyecto guardado");
-                limpiarProyecto();
-            }
-        }
-    }
-
-
 }
