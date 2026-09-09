@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="482.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
    <children>
       <Label layoutX="21.0" layoutY="14.0" text="Registro de Proyecto" />
@@ -17,9 +16,9 @@
       <TextField fx:id="txtArchivoRequerimientos" editable="false" layoutX="21.0" layoutY="305.0" prefHeight="26.0" prefWidth="400.0" />
       <Label layoutX="25.0" layoutY="351.0" text="Directorio del proyecto" />
       <TextField fx:id="txtDirectorioProyecto" editable="false" layoutX="21.0" layoutY="375.0" prefHeight="26.0" prefWidth="400.0" />
-      <Button layoutX="440.0" layoutY="306.0" mnemonicParsing="false" onAction="#seleccionarRequerimiento" text="Seleccionar" />
+      <Button fx:id="btnRequerimiento" layoutX="440.0" layoutY="306.0" mnemonicParsing="false" onAction="#seleccionarRequerimiento" text="Seleccionar" />
       <Button layoutX="440.0" layoutY="376.0" mnemonicParsing="false" onAction="#seleccionarProyecto" text="Seleccionar" />
-      <Button layoutX="29.0" layoutY="433.0" mnemonicParsing="false" text="Guardad proyecto" />
-      <Button layoutX="175.0" layoutY="433.0" mnemonicParsing="false" text="Limpiar" />
+      <Button fx:id="txtGuardar" layoutX="29.0" layoutY="433.0" mnemonicParsing="false" text="Guardar proyecto" />
+      <Button fx:id="btnLimpiar" layoutX="175.0" layoutY="433.0" mnemonicParsing="false" text="Limpiar" />
    </children>
 </AnchorPane>
